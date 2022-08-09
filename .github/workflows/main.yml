@@ -1,15 +1,13 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  install_go:
     runs-on: ubuntu-latest
-    name: A job to say hello
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: 2steaks/github-action-basics@v1.2
-        with:
-          who-to-greet: "Mona the Octocat"
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+    - uses: actions/checkout@v3
+    - uses: actions/setup-go@v3
+      with:
+        go-version: '1.16.1' # The Go version to download (if necessary) and use.
+    - run: go install go.k6.io/xk6/cmd/xk6@latest
+  install_xk6:
+    - run: xk6 build --with github.com/grafana/xk6-browser
