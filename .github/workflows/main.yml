@@ -7,10 +7,6 @@ defaults:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        go: [stable, tip]
-        platform: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
