@@ -40,10 +40,10 @@ jobs:
 
     - name: Build extension
       run: |
-        which go
-        go version
-
-        GOPRIVATE="go.k6.io/k6" xk6 build --output xk6-browser --with github.com/grafana/xk6-browser
+        GOPRIVATE="go.k6.io/k6" xk6 build latest \
+          --output ./xk6-browser \
+          --with github.com/grafana/xk6-browser=.
+        ./xk6-browser version
 
   # - name: Build XK6 Browser
   #   run: xk6 build --output xk6-browser --with github.com/grafana/xk6-browser
