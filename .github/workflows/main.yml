@@ -14,6 +14,8 @@ jobs:
 
       - name: Install Go
         uses: actions/setup-go@v3
+        with:
+          go-version: 1.x
           
       - name: Install XK6
         run: go install go.k6.io/xk6/cmd/xk6@latest
@@ -23,7 +25,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: xk6-browser
-          key: ${{ runner.os }}-xk6-browser-blork
+          key: ${{ runner.os }}-xk6-browser
 
       - name: Build XK6 Browser
         if: steps.cache-xk6-browser.outputs.cache-hit != 'true'
