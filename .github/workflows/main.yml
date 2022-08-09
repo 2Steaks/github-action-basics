@@ -15,10 +15,10 @@ jobs:
     - name: Debug
       run: |
         pwd
-        echo ${HOME}
-        echo ${GITHUB_WORKSPACE}
-        echo ${GOPATH}
-        echo ${GOROOT}
+        echo HOME: ${HOME}
+        echo GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}
+        echo GOPATH: ${GOPATH}
+        echo GOROOT: ${GOROOT}
 
     - name: Install XK6
       run: go install go.k6.io/xk6/cmd/xk6@latest
