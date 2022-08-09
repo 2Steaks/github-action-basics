@@ -18,11 +18,10 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.x
+          cache: true
           
       - name: Install XK6
         run: go install go.k6.io/xk6/cmd/xk6@latest
-        with:
-          cache: true
 
       - name: Cache XK6 Browser
         id: cache-xk6-browser
