@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GOPATH: ${{ github.workspace }}
-      GOBIN: ${{ github.workspace }}/bin
+      GOPATH: bananan
+      GOBIN: bananan/bin
     defaults:
       run:
         working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
