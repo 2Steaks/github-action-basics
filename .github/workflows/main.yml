@@ -1,17 +1,18 @@
 name: XK6 Browser
 on: [push]
 
-env:
-  GOPATH: ${{ github.workspace }}
-  GOBIN: ${{ github.workspace }}/bin
-defaults:
-  run:
-    working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
-
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+
+    env:
+      GOPATH: ${{ github.workspace }}
+      GOBIN: ${{ github.workspace }}/bin
+    defaults:
+      run:
+        working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
+
     steps:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v3
