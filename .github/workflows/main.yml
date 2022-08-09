@@ -8,6 +8,8 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GOPATH: ${{ github.workspace }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
