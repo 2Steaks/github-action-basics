@@ -11,7 +11,7 @@ jobs:
       - run: go version
 
       - name: Debug
-      run: |
-        pwd
-        echo ${GOPATH}
-        echo ${GOROOT}
+      - run: |
+          pwd
+          echo ${GOPATH}
+          echo ${GOROOT}
