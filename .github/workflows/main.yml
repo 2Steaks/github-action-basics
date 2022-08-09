@@ -16,6 +16,12 @@ jobs:
         fetch-depth: 1
         path: go/src/github.com/2steaks/github-action-basics
 
+    - name: Set GOPATH
+        run: |
+          echo "##[set-env name=GOPATH;]$(dirname $GITHUB_WORKSPACE)"
+          echo "##[add-path]$(dirname $GITHUB_WORKSPACE)/bin"
+        shell: bash
+
     - name: Debug
       run: |
         pwd
