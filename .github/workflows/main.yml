@@ -7,8 +7,4 @@ jobs:
       - name: Install XK6 Browser
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v3
-      - run: |
-          go install go.k6.io/xk6/cmd/xk6@latest
-          pwd
-          echo ${GOPATH}
-          echo ${GOROOT}
+      - run: go install go.k6.io/xk6/cmd/xk6@latest
