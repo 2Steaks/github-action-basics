@@ -9,3 +9,9 @@ jobs:
       - name: Setup go
         uses: actions/setup-go@v3
       - run: go version
+
+      - name: Debug
+      run: |
+        pwd
+        echo ${GOPATH}
+        echo ${GOROOT}
