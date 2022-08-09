@@ -1,29 +1,37 @@
+name: XK6 Browser
 on: [push]
-
-env:
-  GOPATH: /home/runner/work/github-action-basics/go
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
-    name: Run E2E Tests
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
-          path: go/src/github.com/2steaks/github-action-basics
-      - name: Setup go
-        uses: actions/setup-go@v3
-      - run: go version
 
-      - name: Debug
-        run: |
-          pwd
-          echo ${GOPATH}
-          echo ${GOROOT}
+    - name: Set up Go
+      uses: actions/setup-go@v3
 
-      - name: Install XK6 Browser
-        run: go install go.k6.io/xk6/cmd/xk6@latest
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+        path: go/src/github.com/2steaks/github-action-basics
 
-      - name: Run XK6 Browser
-        run: xk6 build --output xk6-browser --with github.com/grafana/xk6-browser
+    - name: Debug
+      run: |
+        pwd
+        echo ${HOME}
+        echo ${GITHUB_WORKSPACE}
+        echo ${GOPATH}
+        echo ${GOROOT}
+      env:
+        GOPATH: /home/runner/work/github-action-basics/go
+
+    - name: Install XK6 Browser
+      run: go install go.k6.io/xk6/cmd/xk6@latest
+      env:
+        GOPATH: /home/runner/work/github-action-basics/go
+
+    - name: Run XK6 Browser
+      run: xk6 build --output xk6-browser --with github.com/grafana/xk6-browser
+      env:
+        GOPATH: /home/runner/work/github-action-basics/go
