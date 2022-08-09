@@ -45,9 +45,6 @@ jobs:
           --with github.com/grafana/xk6-browser=.
         ./xk6-browser version
 
-  # - name: Build XK6 Browser
-  #   run: xk6 build --output xk6-browser --with github.com/grafana/xk6-browser
-
     # - name: Run E2E tests
     #   run: |
     #     set -x
