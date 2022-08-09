@@ -6,7 +6,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-
     - name: Set up Go
       uses: actions/setup-go@v3
 
@@ -20,13 +19,9 @@ jobs:
         echo ${GITHUB_WORKSPACE}
         echo ${GOPATH}
         echo ${GOROOT}
-      env:
-        GOPATH: /home/runner/work/github-action-basics/go
 
     - name: Install XK6 Browser
       run: go install go.k6.io/xk6/cmd/xk6@latest
 
     - name: Run XK6 Browser
       run: GOPATH=/home/runner/work/github-action-basics/go xk6 build --output xk6-browser --with github.com/grafana/xk6-browser
-      env:
-        GOPATH: /home/runner/work/github-action-basics/go
