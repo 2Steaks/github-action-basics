@@ -1,38 +1,60 @@
 name: XK6 Browser
 on: [push]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-
-    env:
-      GOPATH: bananan
-      GOBIN: bananan/bin
-    defaults:
-      run:
-        working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
-
     steps:
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
-          path: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Go
-        uses: actions/setup-go@v3
+    - name: Install Go
+      uses: actions/setup-go@v3
 
-      - name: Debug
+    - name: Install Go tip
+      if: matrix.go == 'tip'
+      run: |
+        go install golang.org/dl/gotip@latest
+        gotip download
+        echo "GOROOT=$HOME/sdk/gotip" >> "$GITHUB_ENV"
+        echo "GOPATH=$HOME/go" >> "$GITHUB_ENV"
+        echo "$HOME/go/bin" >> "$GITHUB_PATH"
+        echo "$HOME/sdk/gotip/bin" >> "$GITHUB_PATH"
+
+    - name: Debug
+      run: |
+        pwd
+        echo HOME: ${HOME}
+        echo GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}
+        echo GOPATH: ${GOPATH}
+        echo GOROOT: ${GOROOT}
+
+    - name: Install XK6
+      run: go install go.k6.io/xk6/cmd/xk6@latest
+
+    - name: Build extension
         run: |
-          pwd
-          echo HOME: ${HOME}
-          echo GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}
-          echo GOPATH: ${GOPATH}
-          echo GOROOT: ${GOROOT}
+          which go
+          go version
 
-      - name: Install XK6
-        run: go install go.k6.io/xk6/cmd/xk6@latest
+          GOPRIVATE="go.k6.io/k6" xk6 build latest \
+            --output ./k6extension \
+            --with github.com/grafana/xk6-browser=.
+          ./k6extension version
 
-      - name: Build XK6 Browser
-        run: xk6 build --output xk6-browser --with github.com/grafana/xk6-browser
+    # - name: Build XK6 Browser
+    #   run: xk6 build --output xk6-browser --with github.com/grafana/xk6-browser
+
+      # - name: Run E2E tests
+      #   run: |
+      #     set -x
+      #     export XK6_HEADLESS=true
+      #     for f in examples/*.js; do
+      #       ./k6extension run "$f"
+      #     done
+
