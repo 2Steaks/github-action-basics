@@ -9,5 +9,4 @@ jobs:
       with:
         go-version: '1.16.1' # The Go version to download (if necessary) and use.
     - run: go install go.k6.io/xk6/cmd/xk6@latest
-  install_xk6:
     - run: xk6 build --with github.com/grafana/xk6-browser
