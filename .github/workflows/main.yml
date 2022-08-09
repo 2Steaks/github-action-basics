@@ -3,6 +3,13 @@ on: [push]
 
 jobs:
   build:
+    env:
+      GOPATH: ${{ github.workspace }}
+      GO111MODULE: off
+    defaults:
+      run:
+        working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
+
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -11,6 +18,8 @@ jobs:
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v3
+      with:
+        path: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
 
     - name: Debug
       run: |
