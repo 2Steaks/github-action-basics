@@ -44,16 +44,6 @@
 
 name: 'XK6 Browser'
 description: 'Run XK6 Browser tests'
-inputs:
-  testPathRegex:
-    description: 'Regex for finding tests'
-    required: false
-    default: 'tests/*.js'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.testPathRegex }}
