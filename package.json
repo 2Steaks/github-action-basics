@@ -1,8 +1,8 @@
 {
-  "name": "github-action-basics",
-  "version": "1.0.0",
-  "description": "Github action basics",
-  "main": "index.js",
+  "name": "xk6-browser-github-action",
+  "version": "0.0.1",
+  "description": "XK6 GitHub action",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
