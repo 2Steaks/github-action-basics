@@ -11,3 +11,5 @@ jobs:
 
       - name: Run XK6 Browser
         uses: ./
+        with: 
+          testRegexPath: tests/**/*.js

@@ -1,8 +1,8 @@
-go install go.k6.io/xk6/cmd/xk6@latest
+#!/bin/bash
 
-echo "GOROOT=$HOME/sdk/gotip" >>"$GITHUB_ENV"
-echo "GOPATH=$HOME/go" >>"$GITHUB_ENV"
-echo "$HOME/go/bin" >>"$GITHUB_PATH"
-echo "$HOME/sdk/gotip/bin" >>"$GITHUB_PATH"
+set -x
+export XK6_HEADLESS=true
 
-xk6 build --output xk6-browser --with github.com/grafana/xk6-browser
+for f in $($inputs.testPathRegex); do
+    ./xk6-browser run "$f"
+done
