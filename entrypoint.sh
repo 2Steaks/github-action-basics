@@ -1,5 +1,2 @@
-#!/bin/sh -l
-
-echo "Hello $1"
-time=$(date)
-echo "::set-output name=time::$time"
+go install go.k6.io/xk6/cmd/xk6@latest
+xk6 build --output xk6-browser --with github.com/grafana/xk6-browser
