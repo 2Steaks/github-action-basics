@@ -48,7 +48,7 @@ inputs:
   testPathRegex:
     description: 'Regex for finding tests'
     required: false
-    default: 'tests/example.test.js'
+    default: 'tests/*.js'
 runs:
   using: 'docker'
   image: 'Dockerfile'
