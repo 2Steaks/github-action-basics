@@ -13,7 +13,7 @@ function has_file {
 
 has_file tests
 has_file /tests
-has_file $GITHUB_WORKSPACE/tests
+has_file /github/workspace/tests
 
 for file in $GITHUB_WORKSPACE/$INPUT_TESTREGEX; do
     /go/xk6-browser run "$file"
