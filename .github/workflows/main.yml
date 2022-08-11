@@ -12,4 +12,4 @@ jobs:
       - name: Run XK6 Browser
         uses: ./
         with: 
-          testRegex: tests/*.js
+          testRegex: tests/**/*.js
