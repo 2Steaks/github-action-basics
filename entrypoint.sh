@@ -2,19 +2,20 @@
 
 set -x
 export XK6_HEADLESS=true
-export $INPUT_TESTREGEX
-export $GITHUB_WORKSPACE/$TEST_PATH_REGEX
+export XK6_PATH=/go/xk6-browser
 
-function has_file {
-    if [ ! -f "$1" ]; then
+function has_directory {
+    if [ ! -d "$1" ]; then
         echo "$1 does not exist."
     fi
 }
 
-has_file tests
-has_file /tests
-has_file /github/workspace/tests
+has_directory tests
+has_directory /tests
+has_directory /github/workspace/tests
+has_directory $GITHUB_WORKSPACE/tests
+has_directory /$GITHUB_WORKSPACE/tests
 
 for file in $GITHUB_WORKSPACE/$INPUT_TESTREGEX; do
-    /go/xk6-browser run "$file"
+    $XK6_PATH run "$file"
 done
