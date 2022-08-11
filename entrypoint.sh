@@ -11,8 +11,10 @@ function has_file {
     fi
 }
 
-has_file /go/xk6-browser
+has_file tests
+has_file /tests
+has_file $GITHUB_WORKSPACE/tests
 
-for file in $INPUT_TESTREGEX; do
-    /go/xk6-browser run "$GITHUB_WORKSPACE/$file"
+for file in $GITHUB_WORKSPACE/$INPUT_TESTREGEX; do
+    /go/xk6-browser run "$file"
 done
