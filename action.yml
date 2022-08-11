@@ -1,11 +1,11 @@
 name: 'XK6 Browser'
 description: 'Run XK6 Browser tests'
 inputs:
-  working_directory:
+  testRegex:
     description: 'Where to look for tests'
     required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.working_directory }}
+    - ${{ inputs.testRegex }}

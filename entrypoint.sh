@@ -2,8 +2,8 @@
 
 set -x
 export XK6_HEADLESS=true
-export XK6_PATH=/go/xk6-browser
+export XK6_BROWSER=/go/xk6-browser
 
-for file in tests/**/*.js; do
-    $XK6_PATH run "$file"
+for file in $GITHUB_WORKSPACE/$INPUT_TESTREGEX; do
+    $XK6_BROWSER run "$file"
 done
