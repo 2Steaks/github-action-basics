@@ -9,6 +9,6 @@ echo $GITHUB_WORKSPACE/$INPUT_TESTREGEX
 
 echo $TEST_FILES
 
-for file in $GITHUB_WORKSPACE/$INPUT_TESTREGEX; do
+for file in $TEST_FILES; do
     $XK6_BROWSER run "$file"
 done
