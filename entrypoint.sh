@@ -1,9 +1,11 @@
 #!/bin/bash
 
 set -x
-export XK6_HEADLESS=true
-export XK6_BROWSER=/go/xk6-browser
-export TEST_FILES=find $GITHUB_WORKSPACE/$INPUT_TESTREGEX
+XK6_HEADLESS=true
+XK6_BROWSER=/go/xk6-browser
+TEST_FILES=find $GITHUB_WORKSPACE/$INPUT_TESTREGEX
+
+echo $TEST_FILES
 
 for file in $GITHUB_WORKSPACE/$INPUT_TESTREGEX; do
     $XK6_BROWSER run "$file"
