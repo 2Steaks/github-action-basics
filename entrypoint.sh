@@ -3,8 +3,8 @@
 set -x
 export XK6_HEADLESS=true
 export TEST_PATH_REGEX=${1}
-export $GITHUB_WORKSPACE
+export $GITHUB_WORKSPACE/$TEST_PATH_REGEX
 
-for f in $TEST_PATH_REGEX; do
-    $GITHUB_WORKSPACE/xk6-browser run "$f"
+for file in $GITHUB_WORKSPACE/$TEST_PATH_REGEX; do
+    ./xk6-browser run "$file"
 done
