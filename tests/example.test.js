@@ -1,22 +1,18 @@
-import launcher from 'k6/x/browser'
+import launcher from 'k6/x/browser';
 
-const blah = () => {
-  const browser = launcher.launch('chromium', { debug: true, headless: false })
-  const context = browser.newContext()
-  const page = context.newPage()
-  page.goto('https://planner-benjo696.vercel.app', {
-    waitUntil: 'networkidle',
-  })
+export default function () {
 
-  page.fill('input', 'Chorizo')
-  page.press('input', 'Enter')
+  const browser = launcher.launch('chromium', { headless: true });
+  const context = browser.newContext();
+  const page = context.newPage();
+  
+  page.goto(__ENV.HOST_NAME, {
+    waitUntil: "networkidle",
+  });
 
-  page.locator('h1', { hasText: 'Search' })
-  page.locator('text=Tomato, red wine & chorizo risotto').click()
+  const link = page.locator("a");
+  console.log(link.innerText());
 
-  page.close()
-  browser.close()
+  page.close();
+  browser.close();
 }
-
-// eslint-disable-next-line no-restricted-syntax
-export default blah
